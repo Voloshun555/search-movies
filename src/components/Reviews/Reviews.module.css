@@ -1,0 +1,20 @@
+.contReviews{
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+    margin: 20px 0px;
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    transition: all 0.2s ease-in-out 0s;
+    padding: 10px;
+    overflow: overlay;
+    margin-left: 15px;
+    padding: 15px;
+}
+
+.listReviews{
+    list-style: none;
+}
+.titleReviews{
+    padding: 10px;
+}
