@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import css from './Button.module.css'
 
 
+
 const ButtonPage = ({ page, totalPages, handlePageChange }) => {
+  
   if (totalPages === 1) {
     return null;
   }
@@ -13,7 +15,7 @@ const ButtonPage = ({ page, totalPages, handlePageChange }) => {
       className={css.btnPage}
         type="button"
         disabled={page === 1}
-        onClick={() => handlePageChange(page - 1)}
+        onClick={() => handlePageChange( page - 1)}
       >
         Prev pages
       </button>
@@ -21,7 +23,7 @@ const ButtonPage = ({ page, totalPages, handlePageChange }) => {
       className={css.btnPage}
         type="button"
         disabled={page === totalPages}
-        onClick={() => handlePageChange(page + 1)}
+        onClick={() => handlePageChange( page + 1)}
       >
         Next pages
       </button>

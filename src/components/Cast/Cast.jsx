@@ -1,4 +1,4 @@
-import { getCredits } from 'components/ApiSwrver/ApiServer';
+import { fetchCredits } from 'ApiSwrver/ApiServer';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import css from './Cast.module.css'
@@ -7,7 +7,7 @@ function Cast() {
   const { movieId } = useParams();
   const [castList, setCastList] = useState({});
   useEffect(() => {
-    getCredits(movieId).then(data => {
+    fetchCredits(movieId).then(data => {
       setCastList(data.cast);
     });
   }, [movieId]);

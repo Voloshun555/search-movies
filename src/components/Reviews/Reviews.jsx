@@ -1,21 +1,33 @@
-import { getReviews } from 'components/ApiSwrver/ApiServer';
+import { fetchReviews } from 'ApiSwrver/ApiServer';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import css from './Reviews.module.css'
+import Loader from 'components/Loader/Loader';
 
 function Reviews() {
   const { movieId } = useParams();
-  const [dataReviews, setdataReviews] = useState({});
+  const [dataReviews, setdataReviews] = useState([]);
+  const [status, setStatus] = useState('idle');
 
   useEffect(() => {
-    getReviews(movieId).then(data => {
-      setdataReviews(data.results);
-    });
+    getReviews(movieId)
   }, [movieId]);
+
+
+  async function getReviews(movieId){
+    try {
+      setStatus('pending')
+      const data = await fetchReviews(movieId)
+      setdataReviews(data.results)
+      setStatus('resolved')
+    } catch (error) {
+      setStatus('rejected')
+    }
+  }
 
   return (
     <div className={css.contReviews}>
-      <ul className={css.listReviews}>
+      {status === 'resolved' &&  <ul className={css.listReviews}>
         {dataReviews.length > 0
           ? dataReviews.map(({ author, content, id }) => (
               <li key={id}>
@@ -24,7 +36,10 @@ function Reviews() {
               </li>
             ))
           : "Sorry, we don't have any review for this movie"}
-      </ul>
+      </ul>}
+      {status === 'pending' && <Loader />}
+      {status === 'rejected' && <h2>Sorry, we can't find this page</h2>}
+     
     </div>
   );
 }

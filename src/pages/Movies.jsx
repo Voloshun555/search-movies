@@ -1,21 +1,18 @@
 import { AiOutlineCheck } from 'react-icons/ai';
-import { fetchDataCearch } from 'components/ApiSwrver/ApiServer';
+import { fetchDataCearch } from 'ApiSwrver/ApiServer';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Suspense, useEffect, useState } from 'react';
-import { Link, Outlet, useLocation, useSearchParams } from 'react-router-dom';
-import ButtonPage from 'components/Button/ButtonPage';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import MovieList from 'components/MovieList/MovieList';
 import css from './Home.module.css';
 
 const Movies = () => {
-  const location = useLocation();
-  const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [dataPage, setDataPage] = useState(false);
+  const [status, setStatus] = useState('idle');
 
-  const onValue = searchParams.get('query') || '';
+  const paramsValue = searchParams.get('query') || '';
 
   const hendleSubmit = evt => {
     evt.preventDefault();
@@ -24,61 +21,45 @@ const Movies = () => {
       toast('Enter please a movie name.', {});
     }
     setSearchParams(query !== '' ? { query } : {});
-    setPage(1);
   };
   useEffect(() => {
-    setIsLoading(true);
+    getDataCearch(paramsValue);
+  }, [paramsValue]);
+
+  async function getDataCearch(paramsValue) {
     try {
-      fetchDataCearch(onValue, page).then(data => {
-        setMovies(data.results);
-        setDataPage(data.total_pages);
-        setIsLoading(false);
-      });
-    } catch (error) {}
-  }, [onValue, page]);
+      setStatus('pending');
+      const data = await fetchDataCearch(paramsValue);
+      setMovies(data.results);
+      setStatus('resolved');
+    } catch (error) {
+      setStatus('rejected');
+    }
+  }
 
   return (
-    <Suspense>
-      <div className={css.searchContainer}>
-        <h2>Search movies:</h2>
-        <form className={css.form} onSubmit={hendleSubmit}>
-          <button className={css.btnSubmit} type="submit">
-            <AiOutlineCheck size="2rem" />
-          </button>
-          <input
-            defaultValue={onValue}
-            name="movie"
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search name"
-          />
-        </form>
+    <div className={css.searchContainer}>
+      <h2>Search movies:</h2>
+      <form className={css.form} onSubmit={hendleSubmit}>
+        <button className={css.btnSubmit} type="submit">
+          <AiOutlineCheck size="2rem" />
+        </button>
+        <input
+          defaultValue={paramsValue}
+          name="movie"
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search name"
+        />
+      </form>
 
-        {movies.length > 0 && (
-          <ul>
-            {' '}
-            <h1>Resoult movies: {onValue}</h1>
-            {movies.map(({ id, original_title }) => (
-              <li key={id}>
-                <Link key={id} to={`/movies/${id}`} state={{ from: location }}>
-                  {original_title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-        {isLoading && <div>...Загрузка</div>}
-        {movies.length > 0 && (
-          <ButtonPage
-            page={page}
-            totalPages={dataPage}
-            handlePageChange={setPage}
-          />
-        )}
-        <Outlet />
-      </div>
-    </Suspense>
+      {status === 'resolved' && (
+        <div>
+         {movies.length > 0 && <MovieList movie={movies}  Title={`Resoult movies: ${paramsValue}`} />} 
+        </div>
+      )}
+    </div>
   );
 };
 export default Movies;

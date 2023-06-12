@@ -11,31 +11,7 @@ img {
     padding: 15px;
     color: #0c0c0c;
 }
-.movieList{
-    margin: 0px auto;
-    padding: 0px 100px;
-    list-style: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-.movieListComponent{
-    padding: 5px 12px;
-    border-bottom: 1px solid transparent;
-    color: #0c0c0c;
-}
-.link{
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-     margin: 1px;
-}
 
-.link:hover{
-    color: red;
-}
-.btnPage{
-    margin-top: 20px;
-    margin-left: 150px;
-}
 
 /* ===========================MovieDetails=================================================================== */
 .btnBack{

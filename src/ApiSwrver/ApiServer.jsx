@@ -10,23 +10,23 @@ export async function fetchData(page = 1) {
   return response.data;
 }
 
-export async function fetchDataCearch(query, page) {
+export async function fetchDataCearch(query) {
   const response = await axios.get(
-    `${URL}/search/movie?api_key=${API_Key}&query=${query}&language=en-US&page=${page}`
+    `${URL}/search/movie?api_key=${API_Key}&query=${query}&language=en-US`
   );
   return response.data;
 }
-export async function getMovieDetails(id) {
+export async function fetchMovieDetails(id) {
   const response = await axios.get(`${URL}/movie/${id}?api_key=${API_Key}`);
   return response.data;
 }
-export async function getCredits(movie_id) {
+export async function fetchCredits(movie_id) {
   const response = await axios.get(
     `${URL}/movie/${movie_id}/credits?api_key=${API_Key}`
   );
   return response.data;
 }
-export async function getReviews(movie_id) {
+export async function fetchReviews(movie_id) {
   const response = await axios.get(
     `${URL}/movie/${movie_id}/reviews?api_key=${API_Key}`
   );
