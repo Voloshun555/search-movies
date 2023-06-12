@@ -5,7 +5,7 @@ import css from './Cast.module.css'
 
 function Cast() {
   const { movieId } = useParams();
-  const [castList, setCastList] = useState({});
+  const [castList, setCastList] = useState([]);
   useEffect(() => {
     fetchCredits(movieId).then(data => {
       setCastList(data.cast);
