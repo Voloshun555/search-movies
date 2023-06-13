@@ -24,8 +24,16 @@ function MovieList({ movie }) {
     </div>
   );
 }
-
-MovieList.propTypes = {
-  movie: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+MovieList.propTypers = {
+  movie: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      original_title: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
 };
+
+// MovieList.propTypes = {
+//   movie: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+// };
 export default MovieList;

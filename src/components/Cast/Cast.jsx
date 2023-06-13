@@ -2,19 +2,33 @@ import { fetchCredits } from 'ApiSwrver/ApiServer';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import css from './Cast.module.css'
+import Loader from 'components/Loader/Loader';
 
 function Cast() {
   const { movieId } = useParams();
   const [castList, setCastList] = useState([]);
+  const [status, setStatus] = useState('idle');
+
   useEffect(() => {
-    fetchCredits(movieId).then(data => {
-      setCastList(data.cast);
-    });
+    getCredits(movieId)
   }, [movieId]);
+
+
+  async function getCredits(movieId) {
+    try {
+      setStatus('pending')
+      const data = fetchCredits(movieId)
+    setCastList(data.cast)
+    setStatus('resolved')
+    } catch (error) {
+      setStatus('rejected')
+    }
+    
+  }
 
   return (
     <div className={css.contCast}>
-      <ul className={css.castList}>
+      {status === 'resolved' && <ul className={css.castList}>
       {castList.length > 0
         ? castList.map(({ id, name, profile_path, character }) => (
             <li className={css.castListComonent} key={id}>
@@ -22,7 +36,7 @@ function Cast() {
                 src={
                   profile_path
                     ? `https://image.tmdb.org/t/p/w200${profile_path}`
-                    : `http://www.suryalaya.org/images/no_image.jpg`
+                    : `https://www.suryalaya.org/images/no_image.jpg`
                 }
                 alt="actor"
                 loading="lazy"
@@ -34,7 +48,9 @@ function Cast() {
             </li>
           ))
         : "Sorry, there isn't any info :("}
-      </ul>
+      </ul>}
+      {status === 'pending' && <Loader />}
+      {status === 'rejected' && <h2>Sorry, we can't find this page</h2>}
     </div>
   );
 }
