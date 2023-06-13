@@ -17,7 +17,8 @@ function Cast() {
   async function getCredits(movieId) {
     try {
       setStatus('pending')
-      const data = fetchCredits(movieId)
+      const data = await fetchCredits(movieId)
+      console.log(data.cast)
     setCastList(data.cast)
     setStatus('resolved')
     } catch (error) {
@@ -49,6 +50,7 @@ function Cast() {
           ))
         : "Sorry, there isn't any info :("}
       </ul>}
+      
       {status === 'pending' && <Loader />}
       {status === 'rejected' && <h2>Sorry, we can't find this page</h2>}
     </div>
