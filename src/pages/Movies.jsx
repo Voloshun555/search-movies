@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import MovieList from 'components/MovieList/MovieList';
-import css from './Home.module.css';
+import css from './Home.module.scss';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);

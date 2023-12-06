@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchData } from '../ApiSwrver/ApiServer';
 import MovieList from 'components/MovieList/MovieList';
-import css from './Home.module.css';
+import css from './Home.module.scss';
 import Loader from 'components/Loader/Loader';
 
 const Home = () => {

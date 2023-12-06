@@ -3,7 +3,7 @@ import { fetchMovieDetails } from '../ApiSwrver/ApiServer';
 import { useLocation, useParams } from 'react-router-dom';
 import { Suspense, useRef, useState } from 'react';
 import { useEffect } from 'react';
-import css from './Home.module.css';
+import css from './Home.module.scss';
 import Loader from 'components/Loader/Loader';
 
 const MovieDetails = () => {
@@ -14,7 +14,6 @@ const MovieDetails = () => {
   const [status, setStatus] = useState('idle');
 
   const backLinkRef = useRef(location.state?.from ?? '/');
-  
 
   useEffect(() => {
     getMovieDetails(movieId);
@@ -30,11 +29,24 @@ const MovieDetails = () => {
       setStatus('rejected');
     }
   }
-  const { original_title, overview, genres, poster_path, vote_average } = movie;
+  const {
+    original_title,
+    overview,
+    genres,
+    poster_path,
+    vote_average,
+    backdrop_path,
+  } = movie;
+
   return (
     <>
       {status === 'resolved' && (
-        <main className={css.mainCont}>
+        <main
+          className={`${css.mainCont} ${css.withBackground}`}
+          style={{
+            '--backdrop-path': `url(https://image.tmdb.org/t/p/original${backdrop_path})`,
+          }}
+        >
           <div>
             <Link className={css.btnLink} to={backLinkRef.current}>
               <button className={css.btnBack}>Назад</button>
@@ -65,7 +77,6 @@ const MovieDetails = () => {
               </ul>
             </div>
           </div>
-
           <div>
             <h3>Additional informatio</h3>
             <ul className={css.btnRevue}>
@@ -75,7 +86,7 @@ const MovieDetails = () => {
                   to="cast"
                   state={backLinkRef.current}
                 >
-                  <button>cast</button>
+                  <button className={css.button}>cast</button>
                 </Link>
               </li>
               <li className={css.btnList_Reviews}>
@@ -84,7 +95,7 @@ const MovieDetails = () => {
                   to="reviews"
                   state={backLinkRef.current}
                 >
-                  <button>reviews</button>
+                  <button className={css.button}>reviews</button>
                 </Link>
               </li>
             </ul>

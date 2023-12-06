@@ -13,3 +13,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: Roboto-Condensed-Italic;
+  src: url('./fonts/RobotoCondensed-VariableFont_wght.ttf');
+}
+
+button{
+  cursor: pointer;
+}

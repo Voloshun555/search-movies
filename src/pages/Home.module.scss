@@ -1,0 +1,109 @@
+@import '../mixin/mixin.scss';
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.titleHome {
+  margin-left: 35px;
+  padding: 15px;
+  color: #0c0c0c;
+}
+
+/* ===========================MovieDetails=================================================================== */
+.btnBack {
+  padding: 7px;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    background-color: rgb(6, 78, 138);
+}
+
+.btnLink {
+  text-decoration: none;
+}
+.movieDetails {
+  display: flex;
+  margin-bottom: 15px;
+}
+.movieListDetails {
+  margin-left: 50px;
+}
+.mainCont {
+  position: relative;
+padding: 20px;
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--backdrop-path, url(https://www.suryalaya.org/images/no_image.jpg));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+    opacity: 0.35;
+  }
+}
+.userScore {
+  color: black;
+}
+.btnList {
+  border-radius: 4px;
+  
+}
+.btnRevue {
+  display: flex;
+  list-style: none;
+  margin-left: 15px;
+}
+.btnList_Reviews {
+  margin-left: 15px;
+}
+/* ===================Movie=============================== */
+.searchContainer {
+  padding: 20px;
+}
+.form {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  max-width: 300px;
+  border-radius: 3px;
+  margin-top: 8px;
+  margin-left: 20px;
+  flex-direction: row-reverse;
+}
+.btnSubmit {
+  margin-left: 20px;
+  align-items: center;
+  background-color: inherit;
+  border: 0;
+  margin-right: 4px;
+  margin-left: 4px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+.btnSubmit:hover {
+  transform: scale(1.2);
+}
+.button{
+  padding: 8px 16px;
+    margin: 0px 16px 16px 0px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    background-color: rgb(6, 78, 138);
+}
