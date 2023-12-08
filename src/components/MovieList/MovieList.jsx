@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import css from './movieList.module.css';
+import css from './movieList.module.scss';
 import PropTypes from 'prop-types';
 
 function MovieList({ movie }) {

@@ -38,13 +38,14 @@ const Movies = () => {
   }
 
   return (
-    <div className={css.searchContainer}>
+    <main className={css.searchContainer}>
       <h2>Search movies:</h2>
       <form className={css.form} onSubmit={hendleSubmit}>
         <button className={css.btnSubmit} type="submit">
-          <AiOutlineCheck size="2rem" />
+          <AiOutlineCheck size="20px" />
         </button>
         <input
+          className={css.input}
           defaultValue={paramsValue}
           name="movie"
           type="text"
@@ -59,7 +60,7 @@ const Movies = () => {
          {movies.length > 0 && <MovieList movie={movies}  Title={`Resoult movies: ${paramsValue}`} />} 
         </div>
       )}
-    </div>
+    </main>
   );
 };
 export default Movies;

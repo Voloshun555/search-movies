@@ -24,7 +24,7 @@ const Home = () => {
   }
 
   return (
-    <main>
+    <main className={css.container}>
       <h1 className={css.titleHome}>Top movies</h1>
       {status === 'resolved' && <MovieList movie={moviesTop}  />}
       {status === 'pending' && <Loader />}
