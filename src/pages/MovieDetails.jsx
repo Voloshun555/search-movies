@@ -86,7 +86,7 @@ const MovieDetails = () => {
                   to="cast"
                   state={backLinkRef.current}
                 >
-                  <button className={css.button}>cast</button>
+                  cast
                 </Link>
               </li>
               <li className={css.btnList_Reviews}>
@@ -95,7 +95,7 @@ const MovieDetails = () => {
                   to="reviews"
                   state={backLinkRef.current}
                 >
-                  <button className={css.button}>reviews</button>
+                  reviews
                 </Link>
               </li>
             </ul>

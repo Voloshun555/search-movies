@@ -6,8 +6,9 @@ export const Link = styled(NavLink)`
   margin-left: 10px;
   color: black;
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 5px 16px 8px;
   border-radius: 4px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &.active {
     color: white;
