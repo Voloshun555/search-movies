@@ -1,0 +1,45 @@
+.contCast {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+  margin: 20px 0px;
+  width: 100%;
+  max-width: 1200px;
+  height: 500px;
+  transition: all 0.2s ease-in-out 0s;
+  padding: 10px;
+  overflow: overlay;
+  margin-left: 15px;
+  padding: 15px;
+}
+
+.castList {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+.castListComonent {
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.name{
+    font-family: oboto-Condensed-Italic;
+}
+.popularity {
+  font-family: oboto-Condensed-Italic;
+  margin-top: 15px;
+  & > span {
+    color: rgba(255, 245, 0, 0.6705882353);
+    background-color: #3470ff;
+    font-size: 17px;
+    border-radius: 5px;
+    padding: 2px;
+  }
+}

@@ -1,7 +1,7 @@
 import { fetchReviews } from 'ApiSwrver/ApiServer';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import css from './Reviews.module.css'
+import css from './Reviews.module.scss'
 import Loader from 'components/Loader/Loader';
 
 function Reviews() {
@@ -32,7 +32,7 @@ function Reviews() {
           ? dataReviews.map(({ author, content, id }) => (
               <li key={id}>
                 <h3 className={css.titleReviews}>{author}</h3>
-                <p>{content}</p>
+                <p className={css.content}>{content}</p>
               </li>
             ))
           : "Sorry, we don't have any review for this movie"}

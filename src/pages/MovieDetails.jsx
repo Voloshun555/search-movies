@@ -64,16 +64,20 @@ const MovieDetails = () => {
               alt="poster"
             />
             <div className={css.movieListDetails}>
-              <h1>{original_title}</h1>
+              <h1 className={css.title}>{original_title}</h1>
               <p className={css.userScore}>
-                User Score: <span>{vote_average}</span>{' '}
+                User Score: <span className={css.average}>{vote_average}</span>{' '}
               </p>
-              <h2>Overview</h2>
-              <p>{overview}</p>
-              <h2>Genres</h2>
-              <ul>
+              <h2 className={css.title}>Overview</h2>
+              <p className={css.overview}>{overview}</p>
+              <h2 className={css.title}>Genres</h2>
+              <ul className={css.ganres}>
                 {genres &&
-                  genres.map(({ id, name }) => <li key={id}>{name}</li>)}
+                  genres.map(({ id, name }) => (
+                    <li key={id} className={css.ganresItems}>
+                      {name}
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>

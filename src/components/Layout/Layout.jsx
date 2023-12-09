@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Link } from './Layout.styled';
-import css from './Layout.module.css';
+import css from './Layout.module.scss';
 
 function Layout() {
   return (

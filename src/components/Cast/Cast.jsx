@@ -1,8 +1,10 @@
-import { fetchCredits } from 'ApiSwrver/ApiServer';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import css from './Cast.module.css';
+
+import { fetchCredits } from 'ApiSwrver/ApiServer';
 import Loader from 'components/Loader/Loader';
+
+import css from './Cast.module.scss';
 
 function Cast() {
   const { movieId } = useParams();
@@ -30,23 +32,31 @@ function Cast() {
       {status === 'resolved' && (
         <ul className={css.castList}>
           {castList.length > 0
-            ? castList.map(({ id, name, profile_path, character }) => (
-                <li className={css.castListComonent} key={id}>
-                  <img
-                    src={
-                      profile_path
-                        ? `https://image.tmdb.org/t/p/w200${profile_path}`
-                        : `https://www.suryalaya.org/images/no_image.jpg`
-                    }
-                    alt="actor"
-                    loading="lazy"
-                    width={150}
-                    height={200}
-                  />
-                  <h2>{name}</h2>
-                  <p> Character: {character}</p>
-                </li>
-              ))
+            ? castList.map(
+                ({ id, name, profile_path, character, popularity }) =>
+                  console.log(castList) || (
+                    <li className={css.castListComonent} key={id}>
+                      <img
+                        src={
+                          profile_path
+                            ? `https://image.tmdb.org/t/p/w200${profile_path}`
+                            : `https://www.suryalaya.org/images/no_image.jpg`
+                        }
+                        alt="actor"
+                        loading="lazy"
+                        width={150}
+                        height={200}
+                      />
+                      <div>
+                        <h2 className={css.name}>{name}</h2>
+                        <p> Character: {character}</p>
+                        <h3 className={css.popularity}>
+                          Popularity: <span>{popularity}</span>
+                        </h3>
+                      </div>
+                    </li>
+                  )
+              )
             : "Sorry, there isn't any info :("}
         </ul>
       )}
